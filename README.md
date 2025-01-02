@@ -33,30 +33,34 @@ To set up the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/rcodron-git/IMExpress.git
+   ```
 
 2. **Navigate to the backend directory and install dependencies:**
 
    ```bash
    cd IMExpress/backend
    npm install
+   ```
 
 3. ***Start the backend server:***
 
    ```bash
    npm start
+   ```
 
 4. ***Navigate to the frontend directory and install dependencies:***
 
 ```bash
 cd ../frontend
 npm install
-
+```
 ## Usage
 1. ***Start the frontend development server:***
 
    ```bash
    npm run serve
-
+   ```
+   
 2. ***Access the application:***
    Open your browser and navigate to http://localhost:8080 to use IMExpress.
 
