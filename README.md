@@ -41,6 +41,7 @@ To set up the project locally, follow these steps:
    cd IMExpress/backend
    npm install
    ```
+   Modify the file env-example and fill with your information, you'll get in the account
 
 3. ***Start the backend server:***
 
@@ -58,7 +59,7 @@ npm install
 1. ***Start the frontend development server:***
 
    ```bash
-   npm run serve
+   npm start
    ```
    
 2. ***Access the application:***
