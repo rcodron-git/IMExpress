@@ -1,0 +1,7 @@
+CLIENT_ID='xxxaaabbbpppp'
+CLIENT_SECRET='wwwwnnnnnwwwwww'
+AUTH_URL="https://api.ingrammicro.com/oauth/oauth20/token"
+IM_CUSTOMER_NUMBER=20-222222
+IM_COUNTRY_CODE=US
+IM_SENDERID="MY_SANDBOX_APP"
+URL_BASE="https://api.ingrammicro.com/"
