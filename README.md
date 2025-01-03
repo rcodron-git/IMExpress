@@ -1,6 +1,8 @@
 # IMExpress
 
-IMExpress is a web application designed to facilitate efficient and user-friendly management of instant messaging services. It provides a streamlined interface for users to send, receive, and organize messages in real-time.
+IMExpress is a proof of concept on how to use the INGRAM MICRO API.
+This project is **NON-OFFICIAL** and **no** support will be provided.
+Also, the app is provide **AS IT** and I'm not responsible of bad usage. 
 
 ## Table of Contents
 
@@ -13,9 +15,9 @@ IMExpress is a web application designed to facilitate efficient and user-friendl
 
 ## Features
 
-- Real-time messaging
-- User-friendly interface
-- Efficient message organization
+- Connect to the API to understand how
+- Using EXPRESS JS as backend to communicate with the API
+- VueJS as front to see the results
 
 ## Project Structure
 
@@ -48,6 +50,10 @@ To set up the project locally, follow these steps:
    ```bash
    npm start
    ```
+   Check if the backend is running on http://localhost:5000, you'll normally saw 
+   ## Express
+   welcome to express
+
 
 4. ***Navigate to the frontend directory and install dependencies:***
 
@@ -59,11 +65,28 @@ npm install
 1. ***Start the frontend development server:***
 
    ```bash
-   npm start
+   npm run dev
    ```
    
 2. ***Access the application:***
-   Open your browser and navigate to http://localhost:8080 to use IMExpress.
+   Open your browser and navigate to http://localhost:5173 (could be an other port check on the console where you start the frontend) to use IMExpress.
+
+
+3. ***How to start:***
+Go on the right site, and click on Login, It will connect you to get a token. This token is store on your session.
+You'll see the new pages where you'll be able to test and saw how it's handle and what kind of information.
+All the datas are from the sandbox and the account of test. Always use the url 'sandox' for your requests, except for the Auth
+You can test with your Client ID and Client Secret to generate the token and after use the default IM_CUSTOMER_NUMBER for the test. 
+This is an example of .env
+
+````
+CLIENT_ID='xxxaaabbbpppp'
+CLIENT_SECRET='wwwwnnnnnwwwwww'
+AUTH_URL="https://api.ingrammicro.com/oauth/oauth20/token"
+IM_CUSTOMER_NUMBER=20-222222
+IM_COUNTRY_CODE=US
+IM_SENDERID="MY_SANDBOX_APP"
+````
 
 ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate tests.
