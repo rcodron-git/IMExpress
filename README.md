@@ -1,8 +1,11 @@
 # IMExpress
 
-IMExpress is a proof of concept on how to use the INGRAM MICRO API.
-This project is **NON-OFFICIAL** and **no** support will be provided.
-Also, the app is provide **AS IT** and I'm not responsible of bad usage. 
+IMExpress is a proof of concept on how to use the INGRAM MICRO API.  
+This project is **NON-OFFICIAL** and **no** support will be provided.  
+
+**At this time, I won't add any new features to this project.** it's provide as it.  
+
+**WARNING** this project is not for production, only for test  
 
 ## Table of Contents
 
