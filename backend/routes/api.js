@@ -57,29 +57,41 @@ router.get("/auth", async (req, res, next) => {
 });
 
 /* GET users listing. */
-router.get("/catalog", function (req, res, next) {
+router.get("/catalog", async function (req, res, next) {
   console.log("Catalog API called");
   // Ensure the token is retrieved from the session
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
-    return res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({
+      error: "Unauthorized",
+      message: "No token provided. Please log in.",
+    });
+  }
+  console.log("Token: " + token);
+
+  // Check if the token is not expired
+  if (req.session.tokenExpires < Date.now()) {
+    return res.status(401).json({
+      error: "Token expired",
+      message: "Your session has expired. Please log in again.",
+    });
   }
 
-  // Use the token to make the API request
-  const url = "https://api.ingrammicro.com:443/sandbox/resellers/v6/catalog";
-  axios
-    .get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      res.json(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching catalog data:", error);
-      res.status(500).json({ error: "Failed to fetch catalog data" });
-    });
+  try {
+    const url = "https://api.ingrammicro.com:443/sandbox/resellers/v6/catalog";
+    // add the token to the request headers
+    req.headers.authorization = `Bearer ${token}`;
+    const data = await getData(url, req);
+    res.json(data);
+  } catch (error) {
+    console.error(
+      "Error fetching catalog data:",
+      error.response ? error.response.data : error.message
+    );
+    res
+      .status(500)
+      .json({ error: "Failed to fetch catalog data", message: error.message });
+  }
 });
 
 module.exports = router;

@@ -32,11 +32,15 @@
     </div>
   </nav>
   <Auth v-if="showAuthComponent" @authenticated="handleAuthenticated" />
+  <div class="top-bar">
+    <div v-if="!isAuthenticated">You are not authenticated</div>
+  </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import Auth from '@/components/Auth.vue';
+import eventBus from '../assets/eventBus';
 
 export default {
   name: 'TopBar',
@@ -71,6 +75,14 @@ export default {
       // Remove the token from localStorage
       localStorage.removeItem('authToken');
     };
+
+    const handleDeauth = () => {
+      isAuthenticated.value = false;
+    };
+
+    onMounted(() => {
+      eventBus.on('deauth', handleDeauth);
+    });
 
     return {
       isAuthenticated,

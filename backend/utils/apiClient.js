@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const apiClient = axios.create({
   baseURL: process.env.API_BASE_URL, // Use the API base URL from the .env file
-  timeout: 5000,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
     "User-Agent": "Axios",
@@ -19,6 +19,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     const token = config.headers["Authorization"];
+    console.log("Token in apiClient : " + token);
     if (!token) {
       return Promise.reject({
         response: {
@@ -27,7 +28,14 @@ apiClient.interceptors.request.use(
         },
       });
     }
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = `${token}`;
+    config.headers["Content-Type"] = "application/json";
+    config.headers["User-Agent"] = "Axios";
+    config.headers["Accept"] = "*/*";
+    config.headers["Cache-Control"] = "no-cache";
+    config.headers["IM-CustomerNumber"] = process.env.IM_CUSTOMER_NUMBER;
+    config.headers["IM-CorrelationID"] = "123456";
+    config.headers["IM-CountryCode"] = "FR";
     return config;
   },
   (error) => {
@@ -36,8 +44,11 @@ apiClient.interceptors.request.use(
 );
 
 const getData = async (url, req) => {
+  // Use the session token to make authenticated requests
+  const token = req.headers.authorization?.split(" ")[1];
+  console.log("Token in getData : " + token);
   try {
-    const token = req.session.token;
+    //const token = req.session.token;
     if (!token) {
       throw new Error("Authorization token is missing");
     }
@@ -49,6 +60,8 @@ const getData = async (url, req) => {
     });
     return response.data;
   } catch (error) {
+    console.log("Error in getData : " + error);
+    console.log("Error in getData : " + error.fields);
     throw error;
   }
 };
