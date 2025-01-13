@@ -2,25 +2,20 @@
   <div id="landing-page" class=" d-flex flex-column">
     <!-- Top Bar Component -->
     <TopBar />
-
-    <!-- Body Component -->
-    <BodySection />
-
+    <router-view />
     <!-- Footer Component -->
     <Footer />
   </div>
 </template>
 
 <script>
-import TopBar from "./components/TopBar.vue";
-import BodySection from "./components/BodySection.vue";
-import Footer from "./components/Footer.vue";
+import TopBar from "@/components/TopBar.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "LandingPage",
   components: {
     TopBar,
-    BodySection,
     Footer,
   },
 };

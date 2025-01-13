@@ -3,26 +3,26 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">IMExpress</a>
       <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item" v-if="!isAuthenticated">
-            <a class="nav-link" href="#" @click="showAuth">Login</a>
+            <a class="nav-link" href="#" @click="showAuth">Authenticate</a>
           </li>
           <li class="nav-item" v-if="isAuthenticated">
-            <a class="nav-link" href="#" @click="logout">Logout</a>
+            <a class="nav-link" href="#" @click="logout">De-Auth</a>
           </li>
           <li class="nav-item" v-if="isAuthenticated">
-            <a class="nav-link" href="#">Catalog</a>
+            <router-link class="nav-link" to="/catalog">Catalog</router-link>
           </li>
           <li class="nav-item" v-if="isAuthenticated">
             <a class="nav-link" href="#">Catalog Search</a>
@@ -35,43 +35,51 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import Auth from '@/components/Auth.vue';
 
 export default {
-  name: "TopBar",
+  name: 'TopBar',
   components: {
-    Auth
+    Auth,
   },
   setup() {
+    const isAuthenticated = ref(false);
     const showAuthComponent = ref(false);
-    const isAuthenticated = ref(!!sessionStorage.getItem('authToken'));
-
+    try {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        isAuthenticated.value = true;
+      }
+    } catch (error) {
+      console.error('Error retrieving token:', error);
+    }
     const showAuth = () => {
       showAuthComponent.value = true;
     };
 
     const handleAuthenticated = (token) => {
-      sessionStorage.setItem('authToken', token);
       isAuthenticated.value = true;
-      alert('You are authenticated');
       showAuthComponent.value = false;
+      console.log('Authenticated with token:', token);
+      // Store the token in localStorage
+      localStorage.setItem('authToken', token);
     };
 
     const logout = () => {
-      sessionStorage.removeItem('authToken');
       isAuthenticated.value = false;
-      alert('You are logged out');
+      // Remove the token from localStorage
+      localStorage.removeItem('authToken');
     };
 
     return {
-      showAuthComponent,
       isAuthenticated,
+      showAuthComponent,
       showAuth,
       handleAuthenticated,
-      logout
+      logout,
     };
-  }
+  },
 };
 </script>
 
@@ -79,5 +87,8 @@ export default {
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
+}
+.navbar {
+  margin-bottom: 20px;
 }
 </style>
