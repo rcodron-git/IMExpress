@@ -1,17 +1,24 @@
 <template>
-  <footer class="bg-light text-center py-3">
-    <p>&copy; 2025 IMExpress. All rights reserved.</p>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 IMExpress. All rights reserved.</p>
+    </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "Footer",
+  name: 'Footer',
 };
 </script>
 
 <style scoped>
-footer {
-  border-top: 1px solid #ddd;
+.footer {
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 </style>

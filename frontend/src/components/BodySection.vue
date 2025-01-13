@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid d-flex align-items-center justify-content-center text-center full-page">
     <div>
-      <h1 class="display-4">Welcome to IMExpress</h1>
-      <p class="lead">Your one-stop solution for efficient and reliable express services.</p>
+      <h1 class="display-4">Welcome Ingram Micro Express VueJS</h1>
+      <p class="lead">This proof of concept is to show how you can use the API of Ingram Micro for resellers</p>
       <button class="btn btn-primary btn-lg mt-4">Get Started</button>
     </div>
   </div>

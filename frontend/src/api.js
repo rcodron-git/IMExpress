@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:3000', // Remplacez par l'URL de votre serveur Express
-    headers: {
-        'Content-Type': 'application/json',
-    },
+  baseURL: "http://localhost:3000", // Remplacez par l'URL de votre serveur Express
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export default {
-    authenticate() {
-        return apiClient.post('/api/auth');
-    },
+  authenticate() {
+    return apiClient.get("/api/auth");
+  },
 };

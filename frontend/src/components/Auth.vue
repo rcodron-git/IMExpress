@@ -11,6 +11,7 @@ const Authenticate = async () => {
   try {
     const response = await api.authenticate();
     token.value = response.data.token;
+    sessionStorage.setItem('token', token.value); // Save token in session storage
     emit('authenticated', token.value);
   } catch (err) {
     error.value = 'Failed to authenticate: ' + err;
