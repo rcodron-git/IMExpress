@@ -3,8 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  //res.render('index', { title: 'Express' });
-  res.send("Welcome to the App!");
+
+
+  res.json({"message": "Welcome to the App!"});
+  
 });
 
 module.exports = router;
